@@ -2,7 +2,7 @@ import {
   IToast,
   NotificationPlacement,
   showToast,
-} from "../../../components/atoms/toast";
+} from "../../../views/atoms/toast";
 
 interface IErrorToast {
   message: string;

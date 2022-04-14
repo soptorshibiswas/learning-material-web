@@ -1,4 +1,4 @@
-import LearningHomeTemplate from "../../src/components/templates/learning";
+import LearningHomeTemplate from "../../src/views/templates/learning";
 
 export default function LearningHomePage() {
   return <LearningHomeTemplate />;

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Gap } from "src/components/atoms/spaces";
+import { Gap } from "src/views/atoms/spaces";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import styled from "styled-components";

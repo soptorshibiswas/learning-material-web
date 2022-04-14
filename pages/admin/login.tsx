@@ -1,4 +1,4 @@
-import AdminLoginPage from "../../src/components/templates/admin/adminlogin";
+import AdminLoginPage from "../../src/views/templates/admin/adminlogin";
 import withoutAuth from "../../src/HOC/routes/withoutAuth";
 
 function AdminLogin() {

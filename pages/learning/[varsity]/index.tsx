@@ -1,4 +1,4 @@
-import LearningUniversityTemplate from "../../../src/components/templates/learning/University";
+import LearningUniversityTemplate from "../../../src/views/templates/learning/University";
 
 export default function LearningHomePage() {
   return <LearningUniversityTemplate />;
