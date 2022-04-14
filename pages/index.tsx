@@ -1,4 +1,4 @@
-import LearningHome from "../src/components/templates/learning";
+import LearningHome from "../src/views/templates/learning";
 
 function LandingPage() {
   return <LearningHome />;

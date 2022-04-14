@@ -4,9 +4,9 @@ import { useBreakpoint } from "styled-breakpoints/react-styled";
 import { Text1 } from "../../atoms/texts/Text";
 import { SubTitle1 } from "../../atoms/texts/SubTitle";
 import { Logo } from "../../organisms/header/components";
-import { Gap } from "./../../atoms/spaces/index";
+import { Gap } from "../../atoms/spaces/index";
 import AdminLoginForm from "../../organisms/admin/login/AdminLoginForm";
-import AdminContentLayout from "./../../layouts/adminLayout/AdminContentLayout";
+import AdminContentLayout from "../../layouts/adminLayout/AdminContentLayout";
 
 const MainContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.lightBg};

@@ -1,4 +1,4 @@
-import LearningCoursesTemplate from "../../../../../src/components/templates/learning/Course";
+import LearningCoursesTemplate from "../../../../../src/views/templates/learning/Course";
 
 export default function LearningCoursesPage() {
   return <LearningCoursesTemplate />;

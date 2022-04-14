@@ -4,8 +4,6 @@ export type TTextColors =
   | "textSecondary"
   | "white"
   | "grey"
-  | "lightGrey"
   | "darkGrey"
   | "ashDark"
-  | "blood"
   | "danger";
