@@ -13,7 +13,7 @@ const updateOpt = { new: true, omitUndefined: true };
 
 // Create
 const createUniversity = async (req: Request, res: Response) => {
-  const { name, abbr, image }: ICreateUniversityBody = req.body;
+  const { name, abbr }: ICreateUniversityBody = req.body;
 
   const varsityFound = await University.findOne({ $or: [{ name }, { abbr }] });
   if (varsityFound)
@@ -24,7 +24,6 @@ const createUniversity = async (req: Request, res: Response) => {
   const newVarsity = new University({
     name,
     abbr: abbr,
-    image,
     totalDepartments: 0,
   });
 
@@ -34,7 +33,7 @@ const createUniversity = async (req: Request, res: Response) => {
 
 // Update
 const updateUniversity = async (req: Request, res: Response) => {
-  const { name, abbr, image }: IUpdateUniversityBody = req.body;
+  const { name, abbr }: IUpdateUniversityBody = req.body;
   const { universityId } = req.params;
 
   const query = { _id: universityId };
@@ -76,7 +75,7 @@ const updateUniversity = async (req: Request, res: Response) => {
 
   const updatedUniversity = await University.findOneAndUpdate(
     query,
-    { name, abbr, image },
+    { name, abbr },
     updateOpt
   );
   return res.status(200).json(updatedUniversity);

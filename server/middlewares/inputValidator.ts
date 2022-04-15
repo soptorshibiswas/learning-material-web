@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from "express";
-import logger from "../util/winston";
 import { ObjectSchema, ValidationError } from "yup";
 
 export default (
@@ -28,7 +27,7 @@ export default (
       error.inner.forEach((e: ValidationError) => {
         err[(e as any).path] = e.message;
       });
-      logger.error(err);
+      console.error(err);
       res.status(400).json(err);
     }
   };

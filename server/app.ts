@@ -1,9 +1,6 @@
 import express, { NextFunction, Request, Response } from "express";
 import next from "next";
-import dotenv from "dotenv";
-import logger from "./util/winston";
 import errorHandler from "./middlewares/errorHandler";
-dotenv.config();
 require("express-async-errors");
 import { createConnectionAndInitialize } from "./database/createConnection";
 import config from "../settings/config";
@@ -20,7 +17,7 @@ const server = express();
 createConnectionAndInitialize(config.dbUrl)
   .then()
   .catch((err) => {
-    logger.error(err);
+    console.error(err);
     process.exit(1);
   });
 
@@ -53,7 +50,7 @@ server.use(cookieParser());
       return handle(req, res);
     });
   } catch (err: any) {
-    logger.error(err);
+    console.error(err);
     process.exit(1);
   }
 })();

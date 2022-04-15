@@ -10,7 +10,6 @@
     "axios": "^0.26.1",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
-    "dotenv": "^10.0.0",
     "express": "^4.17.2",
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^8.5.1",
@@ -24,7 +23,6 @@
     "sharp": "^0.30.3",
     "styled-breakpoints": "^11.0.4",
     "styled-components": "^5.3.1",
-    "winston": "^3.3.3",
     "yup": "^0.32.11"
   },
   "scripts": {

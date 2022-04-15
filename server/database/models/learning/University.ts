@@ -3,7 +3,6 @@ import mongoose, { Schema, Document } from "mongoose";
 export interface IUniversityModel {
   name: string;
   abbr: string;
-  image: string;
   totalDepartments: number;
 }
 
@@ -17,10 +16,6 @@ const UniversitySchema = new Schema<IUniversityDocument>({
   abbr: {
     type: String,
     lowercase: true,
-    required: true,
-  },
-  image: {
-    type: String,
     required: true,
   },
   totalDepartments: {

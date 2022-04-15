@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import config from "../../settings/config";
-import logger from "../util/winston";
 import Admin from "../database/models/admin/admin";
 import { COOKIE_KEYS } from "../../shared/types/cookies";
 
@@ -46,12 +45,12 @@ export function authenticator() {
 
         next();
       } catch (err) {
-        logger.error("auth processor error");
-        logger.error(err);
+        console.error("auth processor error");
+        console.error(err);
         return sendUnauthorized(res);
       }
     } catch (err) {
-      logger.error(err);
+      console.error(err);
       return sendUnauthorized(res);
     }
   };

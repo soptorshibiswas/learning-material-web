@@ -119,7 +119,7 @@ const UniversityHero: React.FC<IProps> = ({ university }) => {
   };
 
   return (
-    <Container bg={university.image}>
+    <Container bg="/images/uni_image.webp">
       <OuterContainer>
         <InnerContainer>
           <Heading>

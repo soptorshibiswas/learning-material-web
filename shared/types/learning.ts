@@ -28,12 +28,10 @@ export const materialTypeObj = {
 export interface ICreateUniversityBody {
   name: string;
   abbr: string;
-  image: string;
 }
 export interface IUpdateUniversityBody {
   name?: string;
   abbr?: string;
-  image?: string;
 }
 export interface IUniversity extends ICreateUniversityBody {
   _id: string;

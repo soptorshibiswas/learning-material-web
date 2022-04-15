@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useRef, useState } from "react";
+import React, {  useState } from "react";
 import {
   CloseCircleFilled,
   SearchOutlined,
@@ -17,7 +17,6 @@ import RoundedButton from "../../../atoms/buttons/RoundedButton";
 import { Gap } from "../../../atoms/spaces";
 import { SubTitle1 } from "../../../atoms/texts/SubTitle";
 import { Text1 } from "../../../atoms/texts/Text";
-import FileUploadButton from "../../../molecules/admin/learning/FileUploadButton";
 import {
   AddButton,
   ButtonGrid,
@@ -34,7 +33,6 @@ import {
   StyledButton,
 } from "./components";
 import { TextFieldForm } from "../../../molecules/inputfields";
-import { uploadImageApi } from "../../../../apiLib/admin/adminApi";
 import { ILearningApiError } from "../../../../apiLib/learning/learningApiURL";
 import {
   handlePrivateApiError,
@@ -42,7 +40,6 @@ import {
 } from "../../../../apiLib/errorHandlers";
 import {
   showErrorToastAction,
-  showToastAction,
 } from "../../../../HOC/contexts/toast";
 import {
   createUniversityApi,
@@ -65,12 +62,8 @@ const UniversityList: React.FC = () => {
   >(null);
   const [deleteModal, setDeleteModal] = useState<IUniversity | null>(null);
   const [createSuccess, setCreateSuccess] = useState<boolean>(false);
-  const [fileName, setFileName] = useState<string | undefined>(undefined);
   const [loading, setLoading] = useState<boolean>(false);
   const [updateLoading, setUpdateLoading] = useState<boolean>(false);
-  const [imgLoading, setImgLoading] = useState<boolean>(false);
-
-  const imgRef = useRef<any | null>(null);
 
   React.useEffect(() => {
     setLoading(true);
@@ -90,49 +83,6 @@ const UniversityList: React.FC = () => {
         setLoading(false);
       });
   }, []);
-
-  const handleUpload = (e: React.ChangeEvent<any>, _img: string) => {
-    if (!imgLoading && e.target.files) {
-      setImgLoading(true);
-      const selectedFile = e.target.files[0];
-      if (!selectedFile) {
-        return;
-      }
-
-      const data = new FormData();
-      data.append("image", selectedFile);
-
-      uploadImageApi(data)
-        .then((res) => {
-          setWriteModal((prev) => {
-            if (!prev) return null;
-            return { ...prev, image: res.data.image };
-          });
-          showToastAction({
-            type: "success",
-            message: "Image uploaded successfully",
-          });
-          setFileName(() => {
-            const file = e.target.files[0];
-            const ext = file.name.split(".").pop();
-            return file.name.length > 30
-              ? file.name.slice(0, 30) + "..." + ext
-              : file.name;
-          });
-        })
-        .catch((err) => {
-          const { error } = handlePrivateApiError(err, logoutAdminApiAction);
-          showErrorToastAction({
-            message: "Failed to upload image",
-            description: error,
-          });
-          setFileName(undefined);
-        })
-        .finally(() => {
-          setImgLoading(false);
-        });
-    }
-  };
 
   const onSearch = (e: any) => {
     if (e.target.value.trim() !== "") {
@@ -161,12 +111,10 @@ const UniversityList: React.FC = () => {
   };
   const handleCreateClick = () => {
     setCreateSuccess(false);
-    setWriteModal({ name: "", abbr: "", image: "", type: "create" });
-    setFileName(undefined);
+    setWriteModal({ name: "", abbr: "", type: "create" });
   };
   const handleEditClick = (uni: IUniversity) => {
     setWriteModal({ ...uni, type: "edit" });
-    setFileName(undefined);
   };
   const handleDeleteClick = (uni: IUniversity) => {
     setDeleteModal(uni);
@@ -176,8 +124,7 @@ const UniversityList: React.FC = () => {
     setUpdateLoading(true);
     if (
       writeModal?.name.trim() === "" ||
-      writeModal?.abbr.trim() === "" ||
-      writeModal?.image.trim() === ""
+      writeModal?.abbr.trim() === ""
     ) {
       showErrorToastAction({
         message: "Please provide all information",
@@ -190,7 +137,6 @@ const UniversityList: React.FC = () => {
       createUniversityApi({
         name: writeModal.name,
         abbr: writeModal.abbr,
-        image: writeModal.image,
       })
         .then((res) => {
           setUniversities([...universities, res.data]);
@@ -214,7 +160,6 @@ const UniversityList: React.FC = () => {
       updateUniversityApi((writeModal as IUniversity)._id, {
         name: writeModal.name,
         abbr: writeModal.abbr,
-        image: writeModal.image,
       })
         .then((res) => {
           const newArr = universities;
@@ -378,24 +323,11 @@ const UniversityList: React.FC = () => {
             onChange={handleChangeName}
           />
           <Gap height={"1.875rem"} />
-          <FileUploadButton
-            innerRef={imgRef}
-            fileName={fileName}
-            labelSize={1}
-            labelText={
-              writeModal?.image
-                ? "Change university image"
-                : "Upload university image"
-            }
-            labelLevel={3}
-            onUpload={handleUpload}
-          />
-          <Gap height={"1.875rem"} />
           <RoundedButton
             type={"primary"}
             onClick={submitUpdate}
             loading={updateLoading}
-            disabled={updateLoading || imgLoading}
+            disabled={updateLoading}
           >
             <Text1 level={3} color={"white"}>
               Save

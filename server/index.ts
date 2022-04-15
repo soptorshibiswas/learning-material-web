@@ -1,8 +1,7 @@
 import server from "./app";
-import logger from "./util/winston";
 
-const port = process.env.PORT || 5000;
+const port = 7000;
 
 server.listen(port, () => {
-  logger.info(`learning-material server listening on ${port}`);
+  console.log(`learning-material server listening on ${port}`);
 });
