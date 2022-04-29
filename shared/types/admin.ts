@@ -1,4 +1,4 @@
-import { IAdminModel } from "server/database/models/admin/admin";
+import { IAdminModel } from "../../server/database/models/admin/admin";
 
 export interface IAdminCreateData {
   username: string;
@@ -16,7 +16,7 @@ export interface IAdminLoginResponse {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface IAuthAdmin extends IAdminLoginResponse {}
+export interface IAuthAdmin extends IAdminLoginResponse { }
 
 export interface IAdminAuthToken {
   adminId: string;

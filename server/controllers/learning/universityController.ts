@@ -23,12 +23,12 @@ const createUniversity = async (req: Request, res: Response) => {
 
   const newVarsity = new University({
     name,
-    abbr: abbr,
+    abbr,
     totalDepartments: 0,
   });
 
   const university = await newVarsity.save();
-  return res.status(200).json(university);
+  return res.status(201).json(university);
 };
 
 // Update

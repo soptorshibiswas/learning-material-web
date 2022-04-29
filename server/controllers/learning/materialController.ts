@@ -72,7 +72,7 @@ const createMaterial = async (req: Request, res: Response) => {
   }
 
   const material = await newMaterial.save();
-  return res.status(200).json(material);
+  return res.status(201).json(material);
 };
 
 // Update

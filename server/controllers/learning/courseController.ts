@@ -49,7 +49,7 @@ const createCourse = async (req: Request, res: Response) => {
     universityId: department.universityId,
   });
   const course = await newCourse.save();
-  return res.status(200).json(course);
+  return res.status(201).json(course);
 };
 
 // Update
@@ -85,9 +85,8 @@ const updateCourse = async (req: Request, res: Response) => {
         message: "Course with same name exists in this semester",
       });
 
-    slug = `${course.slug.split("~").slice(0, 2).join("~")}~${
-      semester.name
-    }~${name}`;
+    slug = `${course.slug.split("~").slice(0, 2).join("~")}~${semester.name
+      }~${name}`;
 
     // change material slugs
     const bulkArr: any[] = [];

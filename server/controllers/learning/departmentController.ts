@@ -68,7 +68,7 @@ const createDepartment = async (req: Request, res: Response) => {
     ),
   ]);
 
-  return res.status(200).json(department);
+  return res.status(201).json(department);
 };
 
 // Update
@@ -85,7 +85,7 @@ const updateDepartment = async (req: Request, res: Response) => {
   // check semesters provided and totalSemesters
   if (semesters || totalSemesters) {
     if (!semesters || semesters.length !== totalSemesters)
-      return res.status(404).json({
+      return res.status(400).json({
         message: `Please provide ${totalSemesters} semesters`,
       });
 
@@ -147,9 +147,8 @@ const updateDepartment = async (req: Request, res: Response) => {
                 filter: { _id: cr._id },
                 update: {
                   $set: {
-                    slug: `${cr.slug.split("~").slice(0, 2).join("~")}~${
-                      sem.name
-                    }~${cr.slug.split("~")[3]}`,
+                    slug: `${cr.slug.split("~").slice(0, 2).join("~")}~${sem.name
+                      }~${cr.slug.split("~")[3]}`,
                   },
                 },
               },

@@ -1,8 +1,8 @@
 import express from "express";
 import {
-  createCentralAdmin,
+  createAdmin,
   changeAdminPassword,
-  verifyCentralAdmin,
+  verifyAdmin,
   loginAdmin,
   logoutAdmin,
 } from "../../controllers/adminControllers";
@@ -17,9 +17,9 @@ import { adminIdSchema } from "../../validators/commonValidators";
 
 const router = express.Router();
 
-router.post("/create", inputValidator(createAdminSchema), createCentralAdmin);
+router.post("/create", inputValidator(createAdminSchema), createAdmin);
 
-router.get("/verify/central/:adminId", authenticator(), verifyCentralAdmin);
+router.get("/verify/central/:adminId", authenticator(), verifyAdmin);
 
 router.put(
   "/update/:adminId",

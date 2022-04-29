@@ -11,7 +11,7 @@ import config from "../../settings/config";
 import { COOKIE_KEYS } from "../../shared/types/cookies";
 
 // Create a central admin
-export const createCentralAdmin = async (req: Request, res: Response) => {
+export const createAdmin = async (req: Request, res: Response) => {
   const data: IAdminCreateData = req.body;
 
   const oldAdmin = await Admin.findOne({ username: data.username });
@@ -35,7 +35,7 @@ export const createCentralAdmin = async (req: Request, res: Response) => {
 };
 
 // Verify a central admin
-export const verifyCentralAdmin = async (req: Request, res: Response) => {
+export const verifyAdmin = async (req: Request, res: Response) => {
   const { adminId } = req.params;
 
   const admin = await Admin.findOne({ _id: adminId });
